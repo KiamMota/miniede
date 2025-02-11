@@ -10,9 +10,9 @@ n_bool k_isBackSpace(nn_int *kb_input);
 n_bool k_isEsc(nn_int *kb_input);
 n_bool k_isNF(nn_int *kb_input);
 n_bool k_isEnter(nn_int *kb_input);
-n_bool k_isCtrl(nn_int *kb_input)
+n_bool k_isCtrl(nn_int *kb_input);
 
-typedef union
+typedef struct
 {
     n_bool (*isNormalKey)(nn_int *);
     n_bool (*isBackSpace)(nn_int *);
