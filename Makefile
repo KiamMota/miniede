@@ -1,11 +1,13 @@
 C = clang
 CPP = clang++
-GLOBAL_COMP = gcc
 FLAG = -Wall
 SRC = ./src
-INC = ./include ./include/pdcurses
+INC = ./include 
 OBJ = ./_build
 
+# EXE VARABLE
+
+EXE = miniede
 
 # .c WILDCARDS
 
@@ -16,10 +18,6 @@ GET_OLIST = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(GET_CLIST))
 
 GET_CPPLIST = $(wildcard $(SRC)/*.cpp)
 GET_OPPLIST = $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(GET_CPPLIST))
-
-# EXE VARABLE
-
-EXE = miniede
 
 # COMPILING .o FILES OF .c
 
@@ -34,4 +32,5 @@ $(OBJ)/%.o:	$(SRC)/%.cpp
 # MAIN MAIKE
 
 $(EXE):	$(GET_OLIST) $(GET_OPPLIST)
-	$(GLOBAL_COMP) $(FLAG) -o $@ $(GET_OLIST)
+	$(CPP) $(FLAG) -o $@ $^
+	@echo "COMPILED!"
