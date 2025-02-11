@@ -1,6 +1,6 @@
 #INIT VARABLES
 
-C = gcc
+C = clang 
 FLAG = -Wall
 SRC_d = ./src
 INC_d = ./include
