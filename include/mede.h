@@ -1,7 +1,9 @@
 #ifndef MEDE_H_INCLUDED
 #define MEDE_H_INCLUDED
 
-#include <stdint.h>
+#include <stdint.>
+
+//	this lib loads miniEDE own types, defs and macros.
 
 
 #define START_VAL 0
