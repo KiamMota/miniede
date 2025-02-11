@@ -7,8 +7,9 @@ SRC = ./src
 INC = ./include
 OBJ = ./_build
 GET_CLIST = $(wildcard $(SRC)/*.c)
+GET_CPPLIST = $(wildcard $(SRC)/*.cpp)
 GET_OLIST = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(GET_CLIST))
-
+GET_OPPLIST = $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(GET_CPPLIST))
 EXE = miniede
 
 # COMPILING .o FILES OF .c
@@ -18,9 +19,12 @@ $(OBJ)/%.o:	$(SRC)/%.c
 
 # COMPILING .o FILES OF .cpp
 
+$(OBJ)/%.o:	$(SRC)/%.cpp
+	$(CPP) $(FLAG) -I$(INC) -c $< -o $@
+
 # MAKE
 
-$(EXE):	$(GET_OLIST)
+$(EXE):	$(GET_OLIST) $(GET_OPPLIST)
 	$(C) $(FLAG) -o $@ $^
 # CLEAN .O
 
