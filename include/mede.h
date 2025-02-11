@@ -4,9 +4,8 @@
 #include <stdint.h>
 
 
-#define UNDEF -1
 #define START_VAL 0
-
+#define und_ptr 0
 //typedefs to especific optimized types
 
 typedef signed short n_int; //  nano int defined with 2 bytes

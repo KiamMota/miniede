@@ -5,12 +5,12 @@
 
 extern nn_int *kb_input;
 
-n_bool k_isNormalKey(nn_int *kb_input);
-n_bool k_isBackSpace(nn_int *kb_input);
-n_bool k_isEsc(nn_int *kb_input);
-n_bool k_isNF(nn_int *kb_input);
-n_bool k_isEnter(nn_int *kb_input);
-n_bool k_isCtrl(nn_int *kb_input);
+static n_bool k_isNormalKey(nn_int *kb_input);
+static n_bool k_isBackSpace(nn_int *kb_input);
+static n_bool k_isEsc(nn_int *kb_input);
+static n_bool k_isNF(nn_int *kb_input);
+static n_bool k_isEnter(nn_int *kb_input);
+static n_bool k_isCtrl(nn_int *kb_input);
 
 typedef struct
 {
