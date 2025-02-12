@@ -21,7 +21,8 @@ typedef char* n_string; //  nano string
 //-----------------------//
 
 #define ESC "\033["
-
+#define ERASESCR ESC "2J"
+#define just_erase() printf("%s", ERASESCR)
 //CURSOR
 
 #define c_up "A"
@@ -32,7 +33,8 @@ typedef char* n_string; //  nano string
 #define c_hide "?25l"
 #define c_show "?25h"
 
-#define cursor_mv(nn_int, direc) ESC nn_int #direc
+#define cursor_init() ESC "H"
+#define cursor_mv(nn_int, direc) ESC #nn_int direc
 #define cursor_vs(visibility) ESC #visibility
 
 
