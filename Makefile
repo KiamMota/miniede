@@ -1,5 +1,5 @@
-C = clang
-CPP = clang++
+C = gcc
+CPP = gcc
 FLAG = -Wall
 SRC = ./src
 INC = ./include 
@@ -34,3 +34,7 @@ $(OBJ)/%.o:	$(SRC)/%.cpp
 $(EXE):	$(GET_OLIST) $(GET_OPPLIST)
 	$(CPP) $(FLAG) -o $@ $^
 	@echo "COMPILED!"
+
+clean:
+	rm -rf $(OBJ)/*.o
+	rm -rf $(EXE)
