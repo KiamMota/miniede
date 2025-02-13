@@ -6,7 +6,7 @@
 // ------- MOVIMENTATION -------
 // -----------------------------
 
-n_bool _isUp(nn_int *kb_input)
+void _isUp(nn_int *kb_input)
 {
 	if(*kb_input == K_UP)
 	{
@@ -14,7 +14,7 @@ n_bool _isUp(nn_int *kb_input)
 	}
 }
 
-n_bool _isDown(nn_int *kb_input)
+void _isDown(nn_int *kb_input)
 {
 
 	if(*kb_input == K_DOWN)
@@ -23,7 +23,7 @@ n_bool _isDown(nn_int *kb_input)
 	}
 }
 
-n_bool _isLeft(nn_int *kb_input)
+void _isLeft(nn_int *kb_input)
 {
 	if(*kb_input == K_LEFT)
 	{
@@ -31,7 +31,7 @@ n_bool _isLeft(nn_int *kb_input)
 	}
 }
 
-n_bool _isRight(nn_int *kb_input)
+void _isRight(nn_int *kb_input)
 {
 	if(*kb_input == K_RIGHT)
 	{
@@ -39,10 +39,10 @@ n_bool _isRight(nn_int *kb_input)
 	}
 }
 
-Kb_cursor kb_cursor = 
+Kb_Cursor kb_c = 
 {
-	._isUp = isUp,
-	._isDown = isDown,
-	._isLeft = isLeft,
-	._isRight = isRight
+	_isUp,
+	_isDown,
+	_isLeft,
+	_isRight
 };
