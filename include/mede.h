@@ -37,7 +37,7 @@ typedef char* n_string; //  nano string
 #define c_show "?25h"
 
 #define cursor_mv(line, column) printf(ESC "%d;%dH", (line + 1), (column + 1))
-#define cursor_in(nn_int, move) printf(ESC "%d,%s", nn_int, direc)
+#define cursor_in(nn_int, move) printf(ESC "%d,%s", (nn_int), (direc))
 #define cursor_vs(visibility) printf(ESC "%s", visibility)
 
 #endif //nede.h
