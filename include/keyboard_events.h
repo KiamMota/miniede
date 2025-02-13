@@ -1,0 +1,46 @@
+#include "mede.h"
+
+extern nn_int *kb_inp;
+
+// --------------------------------------------
+// ---------- KEYBOARD GLOBAL EVENTS ----------
+// --------------------------------------------
+
+static n_bool _isSpace(nn_int *kb_input);
+static n_bool _isEnter(nn_int *kb_input);
+static n_bool _isBackSpace(nn_int *kb_input);
+static n_bool _isNormal(nn_int *kb_input);
+static n_bool _isText(nn_int *kb_input);
+
+typedef struct
+{
+    n_bool (*isSpace)(nn_int *);
+    n_bool (*isEnter)(nn_int *);
+    n_bool (*isBackSpace)(nn_int *);
+    n_bool (*isNormal)(nn_int *);
+    n_bool (*isText)(nn_int *);
+} Kb_Ev;
+
+extern Kb_Ev kb_ev;
+
+// --------------------------------------------
+// ---------- CURSOR GLOBAL EVENTS ------------
+// --------------------------------------------
+
+static n_bool _isUp(nn_int *kb_input);
+static n_bool _isDown(nn_int *kb_input);
+static n_bool _isLeft(nn_int *kb_input);
+static n_bool _isRight(nn_int *kb_input);
+
+typedef struct
+{
+    n_bool (*isUp)(nn_int *);
+    n_bool (*isDown)(nn_int *);
+    n_bool (*isLeft)(nn_int *);
+    n_bool (*isRight)(nn_int *);
+} Kb_Cursor;
+
+extern Kb_Cursor kb_cursor;
+
+
+
