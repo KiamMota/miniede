@@ -33,7 +33,6 @@ $(OBJ)/%.o:	$(SRC)/%.cpp
 $(EXE):	$(GET_OLIST) $(GET_OPPLIST)
 	@$(CPP) $(FLAG) -o $@ $^
 	@reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 || true
-	@echo COMPILED!
 	@./$(EXE)
 clean:
 	rm -rf $(OBJ)/*.o
