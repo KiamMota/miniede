@@ -50,5 +50,5 @@ typedef struct
 
 extern Kb_Cursor kb_c;
 
-
+void bye(void);
 
