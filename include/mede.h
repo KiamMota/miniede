@@ -6,7 +6,6 @@
 
 //	this lib loads miniEDE own types, defs and macros.
 
-
 #define START_VAL 0
 #define und_ptr 0
 
@@ -37,15 +36,8 @@ typedef char* n_string; //  nano string
 #define c_hide "?25l"
 #define c_show "?25h"
 
-
-					
-#define cursor_mv(line, column) printf(ESC #line ";" #column "H")
+#define cursor_mv(line, column) printf(ESC "%d;%dH", (line + 1), (column + 1))
 #define cursor_in(nn_int, move) printf(ESC "%d,%s", nn_int, direc)
 #define cursor_vs(visibility) printf(ESC "%s", visibility)
-
-
-
-
-
 
 #endif //nede.h
