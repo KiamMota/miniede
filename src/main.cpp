@@ -1,14 +1,15 @@
 #include "mede.h"
-#include <stdio.h>
+
 
 using namespace std;
 
 int main()
 {
-	int input;
 	just_erase();
-	cursor_init();
+	cursor_mv(5, 5);
 	printf("Hello, world!");
-	fgets(&input, sizeof(input), stdin);
+	cursor_vs(c_hide);
+	getchar();
+	bye();
 	return 0;
 }
