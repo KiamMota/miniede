@@ -1,5 +1,5 @@
-#ifndef MEDE_H_INCLUDED
-#define MEDE_H_INCLUDED
+#ifndef MEDE_H
+#define MEDE_H
 
 #include <stdint.h>
 #include <stdio.h>
@@ -16,9 +16,9 @@ typedef int8_t nn_int;  //  nano nano int defined with 1 byte
 typedef uint8_t n_bool; //  nano bool defined with 1 byte
 typedef char* n_string; //  nano string
 
-//-----------------------//
-//	ESC ANSI	 //
-//-----------------------//
+// ----------------------- //
+// ----- ANSI MACROS ----- //
+// ----------------------- //
 
 #define ESC "\033["
 #define ERASESCR ESC "2J"
@@ -37,7 +37,7 @@ typedef char* n_string; //  nano string
 #define c_show "?25h"
 
 #define cursor_mv(line, column) printf(ESC "%d;%dH", (line + 1), (column + 1))
-#define cursor_in(nn_int, move) printf(ESC "%d,%s", (nn_int), (direc))
+#define cursor_in(nn_int, move) printf(ESC "%d,%s", (nn_int), (move))
 #define cursor_vs(visibility) printf(ESC "%s", visibility)
 
 #endif //nede.h
