@@ -32,6 +32,14 @@ static n_bool _isDown(nn_int *kb_input);
 static n_bool _isLeft(nn_int *kb_input);
 static n_bool _isRight(nn_int *kb_input);
 
+enum MOVE
+{
+	K_UP = 30,
+	K_DOWN,
+	K_LEFT = 17,
+	K_RIGHT = 16
+};
+
 typedef struct
 {
     n_bool (*isUp)(nn_int *);
