@@ -11,9 +11,6 @@ EXE = miniede
 
 # .c WILDCARDS
 
-ANSISUPPORT = reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 || true
-ANSISUPPORTCHECK = /v VirtualTerminalLevel /t REG_DWORD /d 1 || true
-
 GET_CLIST = $(wildcard $(SRC)/*.c)
 GET_OLIST = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(GET_CLIST))
 
