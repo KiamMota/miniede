@@ -11,6 +11,9 @@ EXE = miniede
 
 # .c WILDCARDS
 
+ANSISUPPORT = reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 || true
+ANSISUPPORTCHECK = /v VirtualTerminalLevel /t REG_DWORD /d 1 || true
+
 GET_CLIST = $(wildcard $(SRC)/*.c)
 GET_OLIST = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(GET_CLIST))
 
@@ -22,19 +25,19 @@ GET_OPPLIST = $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(GET_CPPLIST))
 # COMPILING .o FILES OF .c
 
 $(OBJ)/%.o:	$(SRC)/%.c
-	$(C) $(FLAG) -I$(INC) -c $< -o $@ 
+	@$(C) $(FLAG) -I$(INC) -c $< -o $@ 
 
 # COMPILING .o FILES OF .cpp
 
 $(OBJ)/%.o:	$(SRC)/%.cpp
-	$(CPP) $(FLAG) -I$(INC) -c $< -o $@
-
+	@$(CPP) $(FLAG) -I$(INC) -c $< -o $@
 # MAIN MAIKE
 
 $(EXE):	$(GET_OLIST) $(GET_OPPLIST)
-	$(CPP) $(FLAG) -o $@ $^
-	@echo "COMPILED!"
-
+	@$(CPP) $(FLAG) -o $@ $^
+	@reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 || true
+	@echo COMPILED!
+	@./$(EXE)
 clean:
 	rm -rf $(OBJ)/*.o
 	rm -rf $(EXE)
