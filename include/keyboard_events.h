@@ -27,10 +27,10 @@ extern Kb_Ev kb_ev;
 // ---------- CURSOR GLOBAL EVENTS ------------
 // --------------------------------------------
 
-static n_bool _isUp(nn_int *kb_input);
-static n_bool _isDown(nn_int *kb_input);
-static n_bool _isLeft(nn_int *kb_input);
-static n_bool _isRight(nn_int *kb_input);
+static void _isUp(nn_int *kb_input);
+static void _isDown(nn_int *kb_input);
+static void _isLeft(nn_int *kb_input);
+static void _isRight(nn_int *kb_input);
 
 enum MOVE
 {
@@ -42,13 +42,13 @@ enum MOVE
 
 typedef struct
 {
-    n_bool (*isUp)(nn_int *);
-    n_bool (*isDown)(nn_int *);
-    n_bool (*isLeft)(nn_int *);
-    n_bool (*isRight)(nn_int *);
+    void (*isUp)(nn_int *);
+    void (*isDown)(nn_int *);
+    void (*isLeft)(nn_int *);
+    void (*isRight)(nn_int *);
 } Kb_Cursor;
 
-extern Kb_Cursor kb_cursor;
+extern Kb_Cursor kb_c;
 
 
 
