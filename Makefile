@@ -1,4 +1,4 @@
-C = gcc
+C = clang
 CPP = gcc
 FLAG = -Wall
 SRC = ./src
