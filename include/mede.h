@@ -2,6 +2,7 @@
 #define MEDE_H_INCLUDED
 
 #include <stdint.h>
+#include <stdio.h>
 
 //	this lib loads miniEDE own types, defs and macros.
 
@@ -23,7 +24,10 @@ typedef char* n_string; //  nano string
 #define ESC "\033["
 #define ERASESCR ESC "2J"
 #define just_erase() printf("%s", ERASESCR)
+
 //CURSOR
+
+#define cursor_home() printf(ESC "H");
 
 #define c_up "A"
 #define c_dw "B"
@@ -33,11 +37,11 @@ typedef char* n_string; //  nano string
 #define c_hide "?25l"
 #define c_show "?25h"
 
-#define cursor_init() ESC "H"
-#define cursor_mv(nn_int, direc) ESC #nn_int direc
-#define cursor_vs(visibility) ESC #visibility
 
-
+					
+#define cursor_mv(line, column) printf(ESC #line ";" #column "H")
+#define cursor_in(nn_int, move) printf(ESC "%d,%s", nn_int, direc)
+#define cursor_vs(visibility) printf(ESC "%s", visibility)
 
 
 
