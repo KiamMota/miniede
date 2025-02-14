@@ -6,43 +6,38 @@
 // ------- MOVIMENTATION -------
 // -----------------------------
 
-void _isUp(nn_int *kb_input)
-{
-	if(*kb_input == K_UP)
-	{
-		printf("cursor^");
-	}
-}
+n_int cursy = START_VAL;
+n_int cursx = START_VAL;
 
-void _isDown(nn_int *kb_input)
+void _cursorMove(n_int *kb_input)
 {
-
-	if(*kb_input == K_DOWN)
+	cursor_yx(cursy, cursx);
+	switch(*kb_input)
 	{
-		printf("cursorDW");
-	}
-}
-
-void _isLeft(nn_int *kb_input)
-{
-	if(*kb_input == K_LEFT)
-	{
-		printf("CURSOR<");
-	}
-}
-
-void _isRight(nn_int *kb_input)
-{
-	if(*kb_input == K_RIGHT)
-	{
-		printf("cursor>");
+		case K_UP:
+			cursor_mv(cursy - 1, cursx);
+			break;
+		case K_DOWN:
+			cursor_mv(cursy + 1, cursx);
+			break;
+		case K_LEFT:
+			cursor_mv(cursy, cursx - 1);
+			break;
+		case K_RIGHT:
+			cursor_mv(cursy, cursx + 1);
+			break;
 	}
 }
 
 Kb_Cursor kb_c = 
 {
-	_isUp,
-	_isDown,
-	_isLeft,
-	_isRight
+	_cursorMove
 };
+
+void cursorMoveSet(n_int *kb_input)
+{
+	while(1)
+	{
+		kb_c.cursorMove(kb_input);
+	}
+}
