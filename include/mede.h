@@ -36,10 +36,10 @@ typedef char* n_string; //  nano string
 #define c_hide "?25l"
 #define c_show "?25h"
 
+#define cursor_yx(y, x) printf(ESC "%d;%dR", (y + 1), (x + 1))
 #define cursor_mv(line, column) printf(ESC "%d;%dH", (line + 1), (column + 1))
 #define cursor_in(nn_int, move) printf(ESC "%d,%s", (nn_int), (move))
 #define cursor_vs(visibility) printf(ESC "%s", visibility)
-
-void bye(void);
+#define byemede() cursor_vs(c_show)
 
 #endif //nede.h
