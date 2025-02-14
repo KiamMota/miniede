@@ -1,6 +1,6 @@
 #include "mede.h"
 
-extern nn_int *kb_inp;
+extern n_int *kb_inp;
 
 // --------------------------------------------
 // ---------- KEYBOARD GLOBAL EVENTS ----------
@@ -27,11 +27,11 @@ extern Kb_Ev kb_ev;
 // ---------- CURSOR GLOBAL EVENTS ------------
 // --------------------------------------------
 
-static void _isUp(nn_int *kb_input);
-static void _isDown(nn_int *kb_input);
-static void _isLeft(nn_int *kb_input);
-static void _isRight(nn_int *kb_input);
+extern n_int cursy;
+extern n_int cursx;
 
+static void _cursorMove(n_int *kb_input);
+static void CursorMoveSet(n_int *kb_input);
 enum MOVE
 {
 	K_UP = 30,
@@ -42,10 +42,7 @@ enum MOVE
 
 typedef struct
 {
-    void (*isUp)(nn_int *);
-    void (*isDown)(nn_int *);
-    void (*isLeft)(nn_int *);
-    void (*isRight)(nn_int *);
+    void (*cursorMove)(n_int *);
 } Kb_Cursor;
 
 extern Kb_Cursor kb_c;
