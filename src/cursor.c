@@ -38,6 +38,7 @@ void cursorMoveSet(n_int *kb_input)
 {
 	while(1)
 	{
-		kb_c.cursorMove(kb_input);
+		*kb_input = getchar();
+		kb_c.cursorMove(*kb_input);
 	}
 }
