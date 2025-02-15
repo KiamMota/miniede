@@ -11,7 +11,7 @@
 
 //typedefs to especific optimized types
 
-typedef signed short n_int; //  nano int defined with 2 bytes
+typedef signed short n_int; //short unsigend
 typedef int8_t nn_int;  //  nano nano int defined with 1 byte
 typedef uint8_t n_bool; //  nano bool defined with 1 byte
 typedef char* n_string; //  nano string
@@ -30,6 +30,9 @@ typedef char* n_string; //  nano string
 
 //	CURSOR MOVE
 
+#define START_Y 0
+#define START_X 0
+
 #define c_up "A"
 #define c_dw "B"
 #define c_lf "D"
@@ -37,21 +40,36 @@ typedef char* n_string; //  nano string
 
 //	CURSOR STYLES
 
-#define c_blocky ESC "0"
-#define c_normal ESC "1"
-#define c_line ESC "2"
+#define c_sblocky ESC "0"
+#define c_blocky ESC "2"
+
+#define c_sline ESC "3"
+#define c_line ESC "4"
+
+#define c_sbar ESC "5"
+#define c_bar ESC "6"
+
+#define cursor_style(style) printf("%s", style)
 
 //	CURSOR VISIBILITY
 
 #define c_hide "?25l"
 #define c_show "?25h"
 
-#define cursor_style(style) printf(ESC "%s q", style)
+// DEFINITIONS
+
 #define cursor_yx(y, x) printf(ESC "%d;%dR", (y + 1), (x + 1))
+#define cursor_save() printf(ESC "s")
+#define cursor_retpos() printf(ESC "u")
+ 
 #define cursor_mv(line, column) printf(ESC "%d;%dH", (line + 1), (column + 1))
 #define cursor_in(nn_int, move) printf(ESC "%d,%s", (nn_int), (move))
 #define cursor_vs(visibility) printf(ESC "%s", visibility)
 
+
+
+void mederun(void);
+void remede(void);
 void byemede(void);
 
 #endif //mede.h
