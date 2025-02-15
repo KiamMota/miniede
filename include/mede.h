@@ -28,18 +28,29 @@ typedef char* n_string; //  nano string
 
 #define cursor_home() printf(ESC "H");
 
+//	CURSOR MOVE
+
 #define c_up "A"
 #define c_dw "B"
 #define c_lf "D"
 #define c_rg "C"
 
+//	CURSOR STYLES
+
+#define c_blocky ESC "0"
+#define c_normal ESC "1"
+#define c_line ESC "2"
+
+//	CURSOR VISIBILITY
+
 #define c_hide "?25l"
 #define c_show "?25h"
 
+#define cursor_style(style) printf(ESC "%d q")
 #define cursor_yx(y, x) printf(ESC "%d;%dR", (y + 1), (x + 1))
 #define cursor_mv(line, column) printf(ESC "%d;%dH", (line + 1), (column + 1))
 #define cursor_in(nn_int, move) printf(ESC "%d,%s", (nn_int), (move))
 #define cursor_vs(visibility) printf(ESC "%s", visibility)
-#define byemede() cursor_vs(c_show)
 
-#endif //nede.h
+
+#endif //mede.h
