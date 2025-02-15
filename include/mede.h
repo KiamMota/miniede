@@ -46,7 +46,7 @@ typedef char* n_string; //  nano string
 #define c_hide "?25l"
 #define c_show "?25h"
 
-#define cursor_style(style) printf(ESC "%d q")
+#define cursor_style(style) printf(ESC "%s q", style)
 #define cursor_yx(y, x) printf(ESC "%d;%dR", (y + 1), (x + 1))
 #define cursor_mv(line, column) printf(ESC "%d;%dH", (line + 1), (column + 1))
 #define cursor_in(nn_int, move) printf(ESC "%d,%s", (nn_int), (move))
