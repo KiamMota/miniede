@@ -1,6 +1,6 @@
 #include "mede.h"
 
-extern n_int *kb_inp;
+extern n_int *kb_input;
 
 // --------------------------------------------
 // ---------- KEYBOARD GLOBAL EVENTS ----------
@@ -31,7 +31,8 @@ extern n_int cursy;
 extern n_int cursx;
 
 static void _cursorMove(n_int *kb_input);
-static void CursorMoveSet(n_int *kb_input);
+void CursorMoveSet(n_int *kb_input);
+
 enum MOVE
 {
 	K_UP = 30,
