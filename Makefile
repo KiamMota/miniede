@@ -1,4 +1,3 @@
-C = clang
 CC = clang++
 FLAG = -Wall
 SRC = ./src
@@ -18,7 +17,7 @@ _OPPLIST = $(patsubst $(SRC)/%.cpp, $(BUILD)/%.o, $(_CCLIST))
 # rule to build the .c objects
 
 $(BUILD)/%.o: $(SRC)/%.c
-	$(C) $(FLAG) -I$(INCLUDE) -c $< -o $@
+	$(CC) $(FLAG) -I$(INCLUDE) -c $< -o $@
 
 # rule to build the .cpp objects
 
