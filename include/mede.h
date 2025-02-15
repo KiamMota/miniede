@@ -21,8 +21,7 @@ typedef char* n_string; //  nano string
 // ----------------------- //
 
 #define ESC "\033["
-#define ERASESCR ESC "2J"
-#define just_erase() printf("%s", ERASESCR)
+#define just_erase() printf(ESC "2J")
 
 //CURSOR
 
@@ -40,16 +39,14 @@ typedef char* n_string; //  nano string
 
 //	CURSOR STYLES
 
-#define c_sblocky ESC "0"
-#define c_blocky ESC "2"
+#define c_sblocky ESC "0 q"
+#define c_blocky ESC "2 q"
 
-#define c_sline ESC "3"
-#define c_line ESC "4"
+#define c_sline ESC "3 q"
+#define c_line ESC "4 q"
 
-#define c_sbar ESC "5"
-#define c_bar ESC "6"
-
-#define cursor_style(style) printf("%s", style)
+#define c_sbar ESC "5 q"
+#define c_bar ESC "6 q"
 
 //	CURSOR VISIBILITY
 
@@ -58,18 +55,24 @@ typedef char* n_string; //  nano string
 
 // DEFINITIONS
 
+#define cursor_style(style) printf("%s", style)
+
 #define cursor_yx(y, x) printf(ESC "%d;%dR", (y + 1), (x + 1))
+
 #define cursor_save() printf(ESC "s")
+
 #define cursor_retpos() printf(ESC "u")
- 
+
 #define cursor_mv(line, column) printf(ESC "%d;%dH", (line + 1), (column + 1))
+
 #define cursor_in(nn_int, move) printf(ESC "%d,%s", (nn_int), (move))
+
 #define cursor_vs(visibility) printf(ESC "%s", visibility)
-
-
 
 void mederun(void);
 void remede(void);
 void byemede(void);
+
+
 
 #endif //mede.h
