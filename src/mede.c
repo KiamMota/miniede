@@ -5,7 +5,7 @@ void mederun()
 	just_erase();
 	cursor_vs(c_show);
 	cursor_style(c_bar);
-	cursor_mv(STARTY, STARTX);
+	cursor_mv(START_Y, START_X);
 }
 
 void remede()
