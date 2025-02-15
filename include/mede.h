@@ -52,5 +52,6 @@ typedef char* n_string; //  nano string
 #define cursor_in(nn_int, move) printf(ESC "%d,%s", (nn_int), (move))
 #define cursor_vs(visibility) printf(ESC "%s", visibility)
 
+void byemede(void);
 
 #endif //mede.h
