@@ -3,7 +3,7 @@
 #include "keyboard_events.h"
 #include <ctype.h>
 
-nn_int *kb_inp = und_ptr;
+n_int *kb_input = NULL;
 
 n_bool _isSpace(nn_int *kb_input)
 {
