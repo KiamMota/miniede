@@ -1,5 +1,4 @@
 #include "mede.h"
-
 #include "keyboard_events.h"
 
 // -----------------------------
@@ -31,7 +30,7 @@ void _cursorMove(n_int *kb_input)
 
 Kb_Cursor kb_c = 
 {
-	_cursorMove
+	.cursorMove = _cursorMove
 };
 
 void cursorMoveSet(n_int *kb_input)
@@ -39,6 +38,6 @@ void cursorMoveSet(n_int *kb_input)
 	while(1)
 	{
 		*kb_input = getchar();
-		kb_c.cursorMove(*kb_input);
+		kb_c.cursorMove(kb_input);
 	}
 }
