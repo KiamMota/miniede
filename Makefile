@@ -1,39 +1,33 @@
 C = clang
-CPP = gcc
+CC = clang++
 FLAG = -Wall
 SRC = ./src
-INC = ./include 
-OBJ = ./_build
+INCLUDE = ./include
+BUILD = ./_build
 
-# EXE VARABLE
+# wildcards
 
-EXE = miniede
+_CLIST = $(wildcard $(SRC)/*.c)
+_CCLIST = $(wildcard $(SRC)/*.cpp)
 
-# .c WILDCARDS
+# lists
 
-GET_CLIST = $(wildcard $(SRC)/*.c)
-GET_OLIST = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(GET_CLIST))
+_OLIST = $(patsubst $(SRC)/%.c, $(BUILD)/%.o, $(_CLIST))
+_OPPLIST = $(patsubst $(SRC)/%.cpp, $(BUILD)/%.o, $(_CCLIST))
 
-# .cpp WILDCARDS
+# rule to build the .c objects
 
-GET_CPPLIST = $(wildcard $(SRC)/*.cpp)
-GET_OPPLIST = $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(GET_CPPLIST))
+$(BUILD)/%.o: $(SRC)/%.c
+	$(C) $(FLAG) -I$(INCLUDE) -c $< -o $@
 
-# COMPILING .o FILES OF .c
+# rule to build the .cpp objects
 
-$(OBJ)/%.o:	$(SRC)/%.c
-	@$(C) $(FLAG) -I$(INC) -c $< -o $@ 
+$(BUILD)/%.o:	$(SRC)/%.cpp
+	$(CC) $(FLAG) -I$(INCLUDE) -c $< -o $@
+	
+# rule to run
 
-# COMPILING .o FILES OF .cpp
-
-$(OBJ)/%.o:	$(SRC)/%.cpp
-	@$(CPP) $(FLAG) -I$(INC) -c $< -o $@
-# MAIN MAIKE
-
-$(EXE):	$(GET_OLIST) $(GET_OPPLIST)
-	@$(CPP) $(FLAG) -o $@ $^
+miniede:	$(_OLIST) $(_OPPLIST)
+	@echo ".O: $^"
 	@reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 || true
-	@./$(EXE)
-clean:
-	rm -rf $(OBJ)/*.o
-	rm -rf $(EXE)
+	$(CC) $(FLAG) -I$(INCLUDE) -o $@ $^
