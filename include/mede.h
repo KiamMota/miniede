@@ -51,12 +51,12 @@ typedef char* n_string;
 #define bk_green "\033[42m"
 #define bk_yellouw "\033[44m"
 #define bk_blue "\033[44m"
-#define bk_magenta "\033[45"
-#define bk_cyan "\033[46"
-#define bk_white "\033[47"
+#define bk_magenta "\033[45m"
+#define bk_cyan "\033[46m"
+#define bk_white "\033[47m"
 
-#define oncolor_back(bk_color) printf(bk_color);
-#define offcolor_back(bk_colo) printf(bk_default);
+#define oncolor_back(bk_color) printf(bk_color)
+#define offcolor_back(bk_colo) printf(bk_default)
 //  CURSOR
 
 #define cursor_home() printf(ESC "H");
@@ -88,7 +88,7 @@ typedef char* n_string;
 // MACROS OF CURSOR
 
 #define cursor_style(style) printf("%s", style)
-#define cursor_yx(y, x) printf(ESC "%d;%dR", (y + 1), (x + 1))
+//#define cursor_yx(y, x) printf(ESC "%d;%dR", (y + 1), (x + 1))
 #define cursor_mv(line, column) printf(ESC "%d;%dH", (line + 1), (column + 1))
 #define cursor_in(nn_int, move) printf(ESC "%d,%s", (nn_int), (move))
 #define cursor_vs(visibility) printf(ESC "%s", visibility)
