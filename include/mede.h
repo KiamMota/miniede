@@ -32,13 +32,13 @@ typedef char* n_string;
 
 //  TEXT VARABLES
 
-#define tc_default ESC "37m"
-#define tc_black ESC "30m"
-#define tc_red ESC "31m"
-#define tc_green ESC "32m"
-#define tc_yellow ESC "33m"
-#define tc_blue ESC "34m"
-#define tc_magenta ESC "35m"
+#define tc_default "\033[37m"
+#define tc_black "\033[30m"
+#define tc_red "\033[31m"
+#define tc_green "\033[32m"
+#define tc_yellow "\033[33m"
+#define tc_blue "\033[34m"
+#define tc_magenta "\033[35m"
 
 
 #define oncolor_text(tc_color) printf(tc_color)
@@ -71,14 +71,14 @@ typedef char* n_string;
 
 //	CURSOR STYLES
 
-#define c_sblocky ESC "0 q"
-#define c_blocky ESC "2 q"
+#define c_sblocky "\033[0 q"
+#define c_blocky "\033[2 q"
 
-#define c_sline ESC "3 q"
-#define c_line ESC "4 q"
+#define c_sline "\033[3 q"
+#define c_line "\033[4 q"
 
-#define c_bar ESC "5 q"
-#define c_sbar ESC "6 q"
+#define c_bar "\033[5 q"
+#define c_sbar "\033[6 q"
 
 //	CURSOR VISIBILITY
 
@@ -99,5 +99,6 @@ typedef char* n_string;
 void mederun(void);
 void remede(void);
 int byemede(void);
-
+static void setRawMode();
+static void setCanonMode();
 #endif //mede.h
