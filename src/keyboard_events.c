@@ -1,55 +1,89 @@
 #include "mede.h"
-
 #include "keyboard_events.h"
+
 #include <ctype.h>
 
 n_int *kb_input = NULL;
 
-n_bool _isSpace(nn_int *kb_input)
+int checkNullKb(n_int *kb_input)
 {
-    return *kb_input == 32 ? 1 : 0;
+	if(kb_input == NULL)
+	{
+		kb_input = (n_int *)calloc(1, sizeof(n_int));
+		return 1
+	}else
+	{
+		return 0;
+	}
+
 }
-n_bool _isEnter(nn_int *kb_input)
+
+nn_int _isSpace(n_int *kb_input)
 {
-    return *kb_input == 10 ? 1 : 0;
+	switch(*kb_input)
+	{
+	case K_SPACE:
+		return 1;
+		break;
+	default:
+		return 0;
+		break;
+	}
 }
-n_bool _isBackSpace(nn_int *kb_input)
+
+nn_int _isEnter(n_int *kb_input)
 {
-    return *kb_input == 8 ? 1 : 0;
+	switch(*kb_input)
+	{
+	case K_ENTER:
+		return 1;
+		break;
+	default:
+		return 0;
+		break;
+	}
 }
-n_bool _isNormal(nn_int *kb_input)
+
+nn_int _isBackspace(n_int *kb_input)
 {
-    nn_int isnormal = (isalnum(*kb_input));
-    if(isnormal)
-    {
-        return 1;
-    }else
-    {
-        return 0;
-    }
+	switch(*kb_input)
+	{
+	case K_BACKSPACE:
+		return 1;
+		break;
+	default:
+		return 0;
+		break;
+	}
 }
-static n_bool _isText(nn_int *kb_input)
+
+nn_int _isNormal(n_int *kb_input)
 {
-    nn_int istext = (isalnum(*kb_input) ||
-                     isspace(*kb_input) ||
-                     ispunct(*kb_input));
-    if(istext)
-    {
-        return 1;
-    }else
-    {
-        return 0;
-    }
+	nn_int normal = isalnum(*kb_input);
+	return normal;
+}
+
+nn_int _isText(n_int *kb_input)
+{
+	nn_int text =	(	isalnum(*kb_input)
+					||	isspace(*kb_input)
+					||	ispunct(*kb_input) );
+	return text;
 }
 
 Kb_Ev kb_ev =
 {
-    _isSpace,
-    _isEnter,
-    _isBackSpace,
-    _isNormal,
-    _isText
+	.isSpace = _isSpace,
+	.isEnter =  _isEnter,
+	.isBackSpace = _isBackspace,
+	.isNormal = _isNormal,
+	.isText = _isText
 };
+
+
+
+
+
 
 
 
