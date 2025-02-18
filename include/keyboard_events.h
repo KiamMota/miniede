@@ -6,6 +6,7 @@ extern n_int *kb_input;
 // ---------- KEYBOARD GLOBAL EVENTS ----------
 // --------------------------------------------
 
+int checkNullKb(n_int *kb_input);
 static nn_int _isSpace(n_int *kb_input);
 static nn_int _isEnter(n_int *kb_input);
 static nn_int _isBackSpace(n_int *kb_input);
