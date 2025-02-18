@@ -1,24 +1,46 @@
 #include "mede.h"
 
+#include <conio.h>
 extern n_int *kb_input;
 
 // --------------------------------------------
 // ---------- KEYBOARD GLOBAL EVENTS ----------
 // --------------------------------------------
 
-static n_bool _isSpace(nn_int *kb_input);
-static n_bool _isEnter(nn_int *kb_input);
-static n_bool _isBackSpace(nn_int *kb_input);
-static n_bool _isNormal(nn_int *kb_input);
-static n_bool _isText(nn_int *kb_input);
+static nn_int _isSpace(n_int *kb_input);
+static nn_int _isEnter(n_int *kb_input);
+static nn_int _isBackSpace(n_int *kb_input);
+static nn_int _isNormal(n_int *kb_input);
+static nn_int _isText(n_int *kb_input);
+
+typedef enum KEYS
+{
+	K_SPACE = 32,
+	K_TAB = 9,
+	K_ENTER = 13,
+	K_DELETE = 127,
+	K_BACKSPACE = 8,
+	K_F1 = 112,
+	K_F2,
+	K_F3,
+	K_F4,
+	K_F5,
+	K_F6,
+	K_F7,
+	K_F8,
+	K_F9,
+	K_F10,
+	K_F11,
+	K_F12
+} KEYS;
 
 typedef struct
 {
-    n_bool (*isSpace)(nn_int *);
-    n_bool (*isEnter)(nn_int *);
-    n_bool (*isBackSpace)(nn_int *);
-    n_bool (*isNormal)(nn_int *);
-    n_bool (*isText)(nn_int *);
+    nn_int (*isSpace)(n_int *);
+   	nn_int (*isEnter)(n_int *);
+    nn_int (*isBackSpace)(n_int *);
+    nn_int (*isNormal)(n_int *);
+    nn_int (*isText)(n_int *);
 } Kb_Ev;
 
 extern Kb_Ev kb_ev;
@@ -31,7 +53,8 @@ extern n_int cursy;
 extern n_int cursx;
 
 static void _cursorMove(n_int *kb_input);
-void CursorMoveSet(n_int *kb_input);
+static void _changeCursor(n_int *kb_input);
+void initCursor(n_int *kb_input);
 
 enum MOVE
 {
@@ -43,10 +66,9 @@ enum MOVE
 
 typedef struct
 {
-    void (*cursorMove)(n_int *);
+    void (*cursorMove)(int *);
+    void (*changeCursor)(int *);
 } Kb_Cursor;
 
 extern Kb_Cursor kb_c;
-
-void bye(void);
 
