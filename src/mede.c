@@ -2,23 +2,23 @@
 
 void mederun()
 {
-	just_erase();
-	cursor_vs(c_show);
-	cursor_style(c_bar);
-	cursor_mv(START_Y, START_X);
+    CLEAR_SCREEN();
+    cursor_vs(c_show);
+    cursor_style(c_bar);
+    cursor_mv(START_Y, START_X);
 }
 
 void remede()
 {
-	cursor_save();
-	just_erase();
-	cursor_retpos();
+    //TODO
 }
 
-void byemede()
+int byemede()
 {
-	just_erase();
-	cursor_vs(c_show);
-	cursor_style(c_sbar);
+    CLEAR_SCREEN();
+    msg("close safety");
+    cursor_vs(c_show);
+    cursor_style(c_bar);
+    return 0;
 }
 
