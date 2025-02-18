@@ -1,6 +1,5 @@
 #include "mede.h"
 
-#include <conio.h>
 extern n_int *kb_input;
 
 // --------------------------------------------
