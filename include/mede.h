@@ -96,9 +96,10 @@ typedef char* n_string;
 
 //  TERMINAL FLAGS
 
+void setRawMode(nn_int freeFlag);
 void mederun(void);
 void remede(void);
 int byemede(void);
-static void setRawMode();
-static void setCanonMode();
+
+
 #endif //mede.h
