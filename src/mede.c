@@ -56,9 +56,14 @@ void setRawMode(nn_int freeFlag)
     case 0:
         if(WIN_medeConsoleState)
         {
+            *WIN_medeConsoleState &= ~ENABLE_LINE_INPUT;
+            *WIN_medeConsoleState &= ~ENABLE_ECHO_INPUT;
+            SetConsoleMode(WIN_medeHandle, *WIN_medeConsoleState);
+
             free(WIN_medeConsoleState);
             WIN_medeConsoleState = NULL;
         }
+
     break;
     }
     #endif
