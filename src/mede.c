@@ -42,7 +42,7 @@ void setRawMode(nn_int freeFlag)
     LPDWORD WIN_medeConsoleState = (LPDWORD)malloc(sizeof(DWORD));
     if(GetConsoleMode(WIN_medeHandle, WIN_medeConsoleState))
     {
-        *WIN_medeConsoleState &= ENABLE_ECHO_INPUT;
+        *WIN_medeConsoleState &= ~ENABLE_LINE_INPUT;
         SetConsoleMode(WIN_medeHandle, *WIN_medeConsoleState);
 
     }else if(!WIN_medeConsoleState)
