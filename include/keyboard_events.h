@@ -6,7 +6,7 @@ extern n_int *kb_input;
 // ---------- KEYBOARD GLOBAL EVENTS ----------
 // --------------------------------------------
 
-int checkNullKb(n_int *kb_input);
+n_int checkNullKb(n_int *kb_input);
 static nn_int _isSpace(n_int *kb_input);
 static nn_int _isEnter(n_int *kb_input);
 static nn_int _isBackSpace(n_int *kb_input);
@@ -66,8 +66,8 @@ enum MOVE
 
 typedef struct
 {
-    void (*cursorMove)(int *);
-    void (*changeCursor)(int *);
+    void (*cursorMove)(n_int *);
+    void (*changeCursor)(n_int *);
 } Kb_Cursor;
 
 extern Kb_Cursor kb_c;
