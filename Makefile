@@ -1,8 +1,11 @@
+C_CC = clang
 CC = clang++
 FLAG = -Wall
 SRC = ./src
 INCLUDE = ./include
 BUILD = ./_build
+
+MEDE = miniede
 
 # wildcards
 
@@ -17,16 +20,18 @@ _OPPLIST = $(patsubst $(SRC)/%.cpp, $(BUILD)/%.o, $(_CCLIST))
 # rule to build the .c objects
 
 $(BUILD)/%.o: $(SRC)/%.c
-	$(CC) $(FLAG) -I$(INCLUDE) -c $< -o $@
-
+	@$(C_CC) $(FLAG) -I$(INCLUDE) -c $< -o $@
+	@echo ".c -> .o..."
 # rule to build the .cpp objects
 
 $(BUILD)/%.o:	$(SRC)/%.cpp
-	$(CC) $(FLAG) -I$(INCLUDE) -c $< -o $@
-	
+	@$(CC) $(FLAG) -I$(INCLUDE) -c $< -o $@
+	@echo ".cpp -> .o..."
 # rule to run
 
-miniede:	$(_OLIST) $(_OPPLIST)
+$(MEDE):	$(_OPPLIST) $(_OLIST)
 	@echo ".O: $^"
+	@$(CC) $(FLAG) -I$(INCLUDE) -o $@ $^
+	@echo "COMPILED!"
 	@reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 || true
-	$(CC) $(FLAG) -I$(INCLUDE) -o $@ $^
+	$(MEDE)
