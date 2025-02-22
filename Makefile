@@ -1,4 +1,3 @@
-C_CC = clang
 CC = clang++
 FLAG = -Wall
 SRC = ./src
@@ -20,7 +19,7 @@ _OPPLIST = $(patsubst $(SRC)/%.cpp, $(BUILD)/%.o, $(_CCLIST))
 # rule to build the .c objects
 
 $(BUILD)/%.o: $(SRC)/%.c
-	@$(C_CC) $(FLAG) -I$(INCLUDE) -c $< -o $@
+	@$(CC) $(FLAG) -I$(INCLUDE) -c $< -o $@
 	@echo ".c -> .o..."
 # rule to build the .cpp objects
 
@@ -29,9 +28,17 @@ $(BUILD)/%.o:	$(SRC)/%.cpp
 	@echo ".cpp -> .o..."
 # rule to run
 
-$(MEDE):	$(_OPPLIST) $(_OLIST)
+$(MEDE):	$(_OLIST) $(_OPPLIST)
 	@echo ".O: $^"
 	@$(CC) $(FLAG) -I$(INCLUDE) -o $@ $^
 	@echo "COMPILED!"
 	@reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 || true
 	$(MEDE)
+
+clean:
+	# Verifica a plataforma e executa o comando adequado
+	@if [ "$(OS)" = "Windows_NT" ]; then \
+		del /Q $(BUILD)\\*.o $(MEDE); \
+	else \
+		rm -f $(BUILD)/*.o $(MEDE); \
+	fi
