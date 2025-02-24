@@ -1,23 +1,22 @@
 #include "mede.h"
+#include "keyboard_events.h"
 
-#ifdef _WIN32
-    #include <windows.h>
-#elif __linux__ || __APPLE__
-    #include <terminos.h>
+#if defined(_WIN32) //WINPROPS INIT
+
+#include <windows.h>
+
+struct WinProps *wp = NULL;
+
 #endif
 
 void mederun()
 {
+    kb_input = (n_int *)malloc(sizeof(n_int));
     CLEAR_SCREEN();
     setRawMode(1);
     cursor_vs(c_show);
     cursor_style(c_bar);
     cursor_mv(START_Y, START_X);
-}
-
-void remede()
-{
-    //TODO
 }
 
 int byemede()
@@ -30,7 +29,7 @@ int byemede()
     return 0;
 }
 
-void setRawMode(nn_int freeFlag)
+void setRawMode(nn freeFlag)
 {
     #if defined(_WIN32)
 
@@ -38,30 +37,36 @@ void setRawMode(nn_int freeFlag)
     // * W I N D O W S   M O D E *
     // ***************************
 
-    HANDLE WIN_medeHandle = GetStdHandle(STD_INPUT_HANDLE);
-    LPDWORD WIN_medeConsoleState = (LPDWORD)malloc(sizeof(DWORD));
-    if(GetConsoleMode(WIN_medeHandle, WIN_medeConsoleState))
+    if(wp == NULL)
     {
-        *WIN_medeConsoleState &= ~ENABLE_LINE_INPUT;
-        SetConsoleMode(WIN_medeHandle, *WIN_medeConsoleState);
+        wp = (struct WinProps *)malloc(sizeof(struct WinProps));
+    }
+    wp->W_HmedeIn = GetStdHandle(STD_INPUT_HANDLE);
+    wp->W_HmedeOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    wp->W_medeConsoleState = (LPDWORD)malloc(sizeof(DWORD));
 
-    }else if(!WIN_medeConsoleState)
+    if(GetConsoleMode(wp->W_HmedeIn, wp->W_medeConsoleState))
+    {
+        *wp->W_medeConsoleState |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+        *wp->W_medeConsoleState &= ~ENABLE_ECHO_INPUT;
+        *wp->W_medeConsoleState &= ~ENABLE_LINE_INPUT;
+        SetConsoleMode(wp->W_HmedeIn, *wp->W_medeConsoleState);
+    }else if(wp->W_medeConsoleState)
     {
         printf("mede ERR(1): failed to set Windows raw mode!");
-        free(WIN_medeConsoleState);
+        free(wp->W_medeConsoleState);
     }
 
     switch(freeFlag)
     {
     case 0:
-        if(WIN_medeConsoleState)
+        if(wp->W_medeConsoleState)
         {
-            *WIN_medeConsoleState &= ~ENABLE_LINE_INPUT;
-            *WIN_medeConsoleState &= ~ENABLE_ECHO_INPUT;
-            SetConsoleMode(WIN_medeHandle, *WIN_medeConsoleState);
-
-            free(WIN_medeConsoleState);
-            WIN_medeConsoleState = NULL;
+            *wp->W_medeConsoleState &= ~ENABLE_LINE_INPUT;
+            *wp->W_medeConsoleState &= ~ENABLE_ECHO_INPUT;
+            SetConsoleMode(wp->W_medeConsoleState, *wp->W_medeConsoleState);
+            free(wp->W_medeConsoleState);
+            wp = NULL;
         }
 
     break;
