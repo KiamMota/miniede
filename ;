@@ -97,3 +97,33 @@ nem o pdcurses eu sabia movimentar direito
 agora eu faço as coisas do zero
 
 o tab funciona de um jeito genial
+
+temos um avanço ---
+
+IDEIAS:
+
+|mede 0.0a | yourfile.cpp |   ==============================        |
+| 1| #include <iosteam>                                             |
+| 2|                                                                |
+| 3| using namespace std;                                           |
+| 4|                                                                |
+| 5| int main()                                                     |
+| 6|{                                                               |
+| 7| cout << "Hello, world!" << endl;                               |
+| 8|    return 0;                                                   |
+| 9|}                                                               |
+|10|                                                                |
+|~ |                                                                |
+|~ |                                                                |
+|intercept: /your command   n: cl: ---- ANSI: [x]===============    |
+
+o intercept é uma barra parecida com o vim, mas pra comandos
+específicos para organização de código e macros específicas
+
+
+23;02
+
+essa sede de vencer não me deixa descansar
+essa sede de viver bem e trabalhar do meu jeito me
+deixa acordado, eu quero ir pra cama,
+mas eu não vou.
