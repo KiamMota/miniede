@@ -5,10 +5,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifdef _WIN32
+#if defined(_WIN32)
     #include <windows.h>
+
+        struct WinProps
+        {
+            HANDLE W_HmedeIn;
+            HANDLE W_HmedeOut;
+            LPDWORD W_medeConsoleState;
+        };
+
     #define CLEAR_SCREEN() system("cls");
-#elif __linux__ || __APPLE__
+#endif
+#if defined(__linux__) || defined(__APPLE__)
+        #include <termios.h>
     #define CLEAR_SCREEN() system("clear");
 #endif
 
@@ -17,7 +27,7 @@
 //  ESPECIFIC TYPEDEFS TO OPTMIZED TYPES
 
 typedef signed short n_int;
-typedef int8_t nn_int;
+typedef int8_t nn;
 typedef uint8_t _bool;
 typedef char* n_string;
 
@@ -69,7 +79,9 @@ typedef char* n_string;
 #define c_lf "D"
 #define c_rg "C"
 
-//	CURSOR STYLES
+#define cursor_in(n, move) printf("\033[%d;%c", (n), (move));
+
+//  CURSOR STYLES
 
 #define c_sblocky "\033[0 q"
 #define c_blocky "\033[2 q"
@@ -80,7 +92,7 @@ typedef char* n_string;
 #define c_bar "\033[5 q"
 #define c_sbar "\033[6 q"
 
-//	CURSOR VISIBILITY
+//  CURSOR VISIBILITY
 
 #define c_hide "?25l"
 #define c_show "?25h"
@@ -88,17 +100,15 @@ typedef char* n_string;
 // MACROS OF CURSOR
 
 #define cursor_style(style) printf("%s", style)
-//#define cursor_yx(y, x) printf(ESC "%d;%dR", (y + 1), (x + 1))
-#define cursor_mv(line, column) printf(ESC "%d;%dH", (line + 1), (column + 1))
-#define cursor_in(nn_int, move) printf(ESC "%d,%s", (nn_int), (move))
+#define cursor_pos() printf("\033] s");
+#define cursor_mv(line, column) printf("\033[%d;%dH", (line + 1), (column + 1))
 #define cursor_vs(visibility) printf(ESC "%s", visibility)
 #define msg(message) printf("mede: %s.", message)
 
 //  TERMINAL FLAGS
 
-void setRawMode(nn_int freeFlag);
+void setRawMode(nn freeFlag);
 void mederun(void);
-void remede(void);
 int byemede(void);
 
 
