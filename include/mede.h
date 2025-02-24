@@ -15,6 +15,8 @@
             LPDWORD W_medeConsoleState;
         };
 
+        extern struct WinProps *wp;
+
     #define CLEAR_SCREEN() system("cls");
 #endif
 #if defined(__linux__) || defined(__APPLE__)
