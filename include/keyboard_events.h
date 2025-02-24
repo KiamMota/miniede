@@ -6,12 +6,24 @@ extern n_int *kb_input;
 // ---------- KEYBOARD GLOBAL EVENTS ----------
 // --------------------------------------------
 
-n_int checkNullKb(n_int *kb_input);
-static nn_int _isSpace(n_int *kb_input);
-static nn_int _isEnter(n_int *kb_input);
-static nn_int _isBackSpace(n_int *kb_input);
-static nn_int _isNormal(n_int *kb_input);
-static nn_int _isText(n_int *kb_input);
+n_int isKb(n_int *_input);
+_bool specialKeys(n_int *_in);
+static nn _isSpace(n_int *_in);
+static nn _isEnter(n_int *_in);
+static nn _isBackSpace(n_int *_in);
+static nn _isNormal(n_int *_in);
+static nn _isText(n_int *_in);
+
+struct keyboard_events
+{
+	nn (*isSpace)(n_int *);
+	nn (*isEnter)(n_int *);
+	nn (*isBackSpace)(n_int *);
+	nn (*isNormal)(n_int *);
+	nn (*isText)(n_int *);
+};
+
+extern keyboard_events kb;
 
 typedef enum KEYS
 {
@@ -34,28 +46,12 @@ typedef enum KEYS
 	K_F12
 } KEYS;
 
-typedef struct
-{
-    nn_int (*isSpace)(n_int *);
-   	nn_int (*isEnter)(n_int *);
-    nn_int (*isBackSpace)(n_int *);
-    nn_int (*isNormal)(n_int *);
-    nn_int (*isText)(n_int *);
-} Kb_Ev;
-
-extern Kb_Ev kb_ev;
 
 // --------------------------------------------
 // ---------- CURSOR GLOBAL EVENTS ------------
 // --------------------------------------------
 
-extern n_int cursy;
-extern n_int cursx;
-
-static void _cursorMove(n_int *kb_input);
-static void _changeCursor(n_int *kb_input);
-void initCursor(n_int *kb_input);
-
+void moveSet(n_int *input);
 enum MOVE
 {
 	K_UP = 30,
@@ -63,12 +59,4 @@ enum MOVE
 	K_LEFT = 17,
 	K_RIGHT = 16
 };
-
-typedef struct
-{
-    void (*cursorMove)(n_int *);
-    void (*changeCursor)(n_int *);
-} Kb_Cursor;
-
-extern Kb_Cursor kb_c;
 
